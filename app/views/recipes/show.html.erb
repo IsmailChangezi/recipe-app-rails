@@ -1,9 +1,50 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @recipe %>
+<div>
+    <h1>Recipe <%= @recipe.id%></h1>
+    <div>
+      <p>Preparation Time: <%= @recipe.preparation_time%></p>
+        <span>
+          <p>public: </p>
+          <% if @recipe.public %>
+          <%= image_tag('C:\Users\sadi1q\OneDrive\Desktop\RoR capstone\recipe-app-rails\app\assets\images\icon-true.svg', size: '30x30') %>
+          <% else %>
+          <%= image_tag('C:\Users\sadi1q\OneDrive\Desktop\RoR capstone\recipe-app-rails\app\assets\images\toggle-off-solid.svg', size: "30x30")%>
+          <%end%>
+        </span> 
+    </div>
+    <p>Cooking Time: <%= @recipe.cooking_time%></p>
+    <%= link_to "Add Ingredients", edit_recipe_path(@recipe)%>
+</div>
+<div>
+<h1>My Basket</h1>
+  <table class="table table-striped" >
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name:</th>
+       <th scope="col">Measurement_unit:</th>
+      <th scope="col">Price: </th>
+      <th scope="col">Quantity:</th>
+      <th scope="col">Actions:</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @foods.each do |food| %>
+    <tr>
+      <th scope="row"><%= food.id %></th>
+      <td><%=food.name%></td>
+      <td><%=food.measurement_unit%></td>
+      <td><%=food.price%></td>
+      <td><%=food.quantity%></td>
+   <td>  <%= button_to "Delete", @food, method: :delete %></td>
+    </tr>
+      <% end %>
+  </tbody>
+  </table>
+</div>
 
 <div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
   <%= link_to "Back to recipes", recipes_path %>
 
   <%= button_to "Destroy this recipe", @recipe, method: :delete %>
