@@ -7,13 +7,13 @@ default: &default
 
 development:
   <<: *default
-  database: recipe-rails_development
+  database: recipe-rails-2_development
   user: postgres
   password: ismail
 
 test:
   <<: *default
-  database: recipe-rails_test
+  database: recipe-rails-2_test
   user: postgres
   password: ismail
 

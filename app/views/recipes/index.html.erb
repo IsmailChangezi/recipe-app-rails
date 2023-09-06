@@ -1,0 +1,30 @@
+<div class="container">
+<h1>Recipes</h1>
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+  <% @recipes.each do |recipe| %>
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Recipe # <%= recipe.id%>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>Name: </strong><%= recipe.name%><br></br> 
+        <p> <strong>Description: </strong><%= recipe.description%></p>
+        <p> <strong>Cooking Time: </strong><%= recipe.cooking_time%></p>
+        <p> <strong>Preparation Time: </strong><%= recipe.preparation_time%></p>
+    <p>
+      <%= link_to "Show this recipe", recipe %>
+    </p>
+      </div>
+    </div>
+       <% end %>
+  </div>
+ 
+</div>
+
+<%= link_to "New recipe", new_recipe_path %>
+
+</div>
