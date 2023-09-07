@@ -15,6 +15,16 @@ class RecipeFoodsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should create recipe_food' do
+    assert_difference('RecipeFood.count') do
+      post recipe_foods_url,
+           params: { recipe_food: { foods_id: @recipe_food.foods_id, quantity: @recipe_food.quantity,
+                                    recipes_id: @recipe_food.recipes_id } }
+    end
+
+    assert_redirected_to recipe_food_url(RecipeFood.last)
+  end
+
   test 'should show recipe_food' do
     get recipe_food_url(@recipe_food)
     assert_response :success
