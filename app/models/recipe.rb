@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  belongs_to :users, class_name: "User"
+  belongs_to :users, class_name: 'User'
 
   validates :name, presence: true
   validates :description, presence: true
