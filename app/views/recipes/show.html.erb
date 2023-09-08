@@ -19,36 +19,38 @@
     </div>
   </div>
     <p>Cooking Time: <%= @recipe.cooking_time%></p>
+    <div>
     <%= link_to "Add Ingredients", edit_recipe_path(@recipe)%>
+      <a href= <%= "/general_shopping_list" %>>
+        <button class="btn-bg-red-big ">Generate Shopping List</button>
+      </a>
+    </div>
 </div>
 <div>
-<h2>My Basket</h2>
-  <table class="table table-striped" >
-    <thead>
+<table class="table">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name:</th>
-       <th scope="col">Measurement_unit:</th>
-      <th scope="col">Price: </th>
-      <th scope="col">Quantity:</th>
-      <th scope="col">Actions:</th>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Actions</th>
     </tr>
-  </thead>
-  <tbody>
-   <% @foods.each do |food| %>
-    <tr>
-      <th scope="row"><%= food.id %></th>
-      <td><%=food.name%></td>
-      <td><%=food.measurement_unit%></td>
-      <td><%=food.price%></td>
-      <td><%=food.quantity%></td>
-   <td>  <%= button_to "Delete",food, method: :delete %></td>
-    </tr>
-      <% end %>
-  </tbody>
-  </table>
-</div>
-
+    <% @recipe.recipe_foods.each do |recipe_food| %>
+      <tr>
+          <td><%= recipe_food.food.name %></td>
+          <td><%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %></td>
+          <td>$ <%= recipe_food.value %></td>
+          <td>
+          <% if can? :destroy , @recipe %>
+          <div class="row btns">
+            <%= link_to "Modify", edit_recipe_recipe_food_path(recipe_id: @recipe.id, id: recipe_food.id), class: "btn-text btn-modify" %>
+            <%= button_to "Remove", recipe_recipe_food_path(recipe_id: @recipe.id, id: recipe_food.id), class: "no-styling btn-text color-red", method: :delete %>
+          </div>
+          <% end %>
+          </td>
+      </tr>
+    <% end %>
+     <%= render partial: "home/empty_list", locals: {list: @recipe.recipe_foods} %>
+</table>
 <div>
   <%= link_to "Back to recipes", recipes_path %>
 

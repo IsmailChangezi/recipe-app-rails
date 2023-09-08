@@ -12,7 +12,7 @@ class FoodsController < ApplicationController
   # GET /foods/new
   def new
     @food = Food.new
-    @food.users_id = current_user.id
+    @food.user_id = current_user.id
   end
 
   # GET /foods/1/edit
@@ -51,7 +51,7 @@ class FoodsController < ApplicationController
     @food.destroy
 
     respond_to do |format|
-      format.html { redirect_to foods_url, notice: "Food was successfully destroyed." }
+      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,7 +65,7 @@ class FoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def food_params
-    params[:food].merge!(:users_id => current_user.id.to_s)
-    params.require(:food).permit(:name, :measurement_unit, :price, :quantity, :users_id)
+    params[:food].merge!(user_id: current_user.id.to_s)
+    params.require(:food).permit(:name, :measurement_unit, :price, :quantity, :user_id)
   end
 end
