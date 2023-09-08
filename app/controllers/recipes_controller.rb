@@ -8,8 +8,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1 or /recipes/1.json
   def show
-    @recipe= Recipe.find_by_id(params[:id])
-    @foods = Food.where(users_id: current_user.id)
+    @recipe = Recipe.find_by_id(params[:id])
+    @foods = Food.where(user_id: current_user.id)
   end
 
   # GET /recipes/new
@@ -68,7 +68,7 @@ class RecipesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def recipe_params
-    params[:recipe].merge!(:users_id => current_user.id.to_s)
+    params[:recipe].merge!(users_id: current_user.id.to_s)
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :users_id)
   end
 end
