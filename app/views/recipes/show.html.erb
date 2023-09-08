@@ -19,7 +19,7 @@
     </div>
   </div>
     <p>Cooking Time: <%= @recipe.cooking_time%></p>
-    <div>
+    <div class="ingredients">
     <%= link_to "Add Ingredients", edit_recipe_path(@recipe)%>
       <a href= <%= "/general_shopping_list" %>>
         <button class="btn-bg-red-big ">Generate Shopping List</button>

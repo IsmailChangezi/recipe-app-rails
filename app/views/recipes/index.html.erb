@@ -5,7 +5,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= recipe.id %>" aria-expanded="false" aria-controls="collapse<%= recipe.id %>">
-          Recipe # <%= recipe.id %>
+          <%= recipe.name %>
         </button>
       </h2>
       <div id="collapse<%= recipe.id %>" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -15,6 +15,7 @@
           <p> <strong>Cooking Time: </strong><%= recipe.cooking_time %></p>
           <p> <strong>Preparation Time: </strong><%= recipe.preparation_time %></p>
           <p><%= link_to "Show this recipe", recipe %></p>
+          <%= button_to "Remove", recipe, method: :delete, class: 'no-styling btn-text bold' %>
         </div>
       </div>
     </div>
