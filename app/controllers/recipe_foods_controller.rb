@@ -21,11 +21,11 @@ class RecipeFoodsController < ApplicationController
   def create
     @recipe_food = RecipeFood.new(recipe_food_params)
     @recipe_food.recipe_id = params[:recipe_id].to_i
-    new_paht=@recipe_food.recipe_id
+    new_paht = @recipe_food.recipe_id
 
     respond_to do |format|
       if @recipe_food.save
-        format.html { redirect_to recipe_url(new_paht),  notice: 'Recipe food was successfully created.' }
+        format.html { redirect_to recipe_url(new_paht), notice: 'Recipe food was successfully created.' }
         format.json { render :show, status: :created, location: @recipe_food }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +49,7 @@ class RecipeFoodsController < ApplicationController
 
   # DELETE /recipe_foods/1 or /recipe_foods/1.json
   def destroy
-    new_paht=@recipe_food.recipe_id
+    new_paht = @recipe_food.recipe_id
     @recipe_food.destroy
 
     respond_to do |format|
