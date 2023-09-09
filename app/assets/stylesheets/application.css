@@ -1,0 +1,11 @@
+.ingredients {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pr-row {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: left;
+  padding: 1rem;
+}
