@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :recipe_foods
+  # resources :recipe_foods
   resources :foods
-  resources :recipes
+  # resources :recipes
+  resources :recipes do 
+    resources :recipe_foods, as: 'foods'
+  end
   resources :users
   resources :public_recipes
   get "general_shopping_list", to: "general_shopping_list#index"

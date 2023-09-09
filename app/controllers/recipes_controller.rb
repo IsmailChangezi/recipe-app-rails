@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-    @recipe.users_id = current_user.id
+    @recipe.user_id = current_user.id
   end
 
   # GET /recipes/1/edit
@@ -24,6 +24,7 @@ class RecipesController < ApplicationController
   # POST /recipes or /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user_id = current_user.id.to_s
 
     respond_to do |format|
       if @recipe.save
@@ -51,6 +52,7 @@ class RecipesController < ApplicationController
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
+    @recipe.recipe_foods.destroy_all
     @recipe.destroy
 
     respond_to do |format|
@@ -68,7 +70,6 @@ class RecipesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def recipe_params
-    params[:recipe].merge!(users_id: current_user.id.to_s)
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :users_id)
   end
 end
